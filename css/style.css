@@ -148,11 +148,6 @@ input[type="radio"].visually-hidden {
   margin-right: 0;
 }
 
-.toggle-menu {
-  font-family: "Montserrat-Black";
-  display: none;
-}
-
 .site-address__list {
   font-size: 16px;
   text-transform: uppercase;
@@ -782,10 +777,17 @@ input[type="radio"].visually-hidden {
   z-index: 50;
 }
 
+.contact-form {
+  background-color: #ffffff;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
 .popup.open {
   display: block;
 }
 
+.contact-form input,
 .popup input {
   font-family: "Roboto-Regular";
   width: 80%;
@@ -837,6 +839,7 @@ input[type="radio"].visually-hidden {
 .modal-close::after {
   transform: rotate(45deg);
 }
+
 .button.button-submit {
   margin-bottom: 6%;
   width: 80%;
@@ -885,6 +888,7 @@ input[type="radio"].visually-hidden {
   top: 28px;
   left: 0;
 }
+
 .toggle-menu:after {
   content: "";
   top: 14px;
@@ -918,7 +922,7 @@ input[type="radio"].visually-hidden {
   background-color: #000000;
   text-align: center;
   z-index: 60;
-  padding-top: 45%;
+  padding-top: 15%;
   padding-bottom: 5%;
 }
 
@@ -972,40 +976,116 @@ input[type="radio"].visually-hidden {
   padding-left: 2%;
 }
 
-.catalog-page-description {
-  margin-bottom: 5%;
+.services {
+  font-family: "Roboto-Light";
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 28px;
+  color: #606060;
 }
 
-.catalog.inner-page h3 {
-  text-align: center;
-  font-family: "Montserrat-Bold";
-  text-transform: uppercase;
-  margin-bottom: 3%;
+.description-services {
+  display: flex;
+  margin-bottom: 44px;
 }
 
-.catalog-list.inner-page {
-  justify-content: space-between;
+.services-content {
+  display: flex;
 }
 
-.catalog-list__item.inner-page {
-  margin-right: 5%;
+.services-container {
+  margin-left: 80px;
+}
+
+.services-content .services-container {
+  margin-left: 0;
+}
+
+.services-main-header {
+  font-family: "Mplus1p-Regular";
+  line-height: 71px;
+  font-size: 48px;
+  font-weight: 200;
   text-align: right;
+  margin: 0;
 }
 
-.catalog-price {
-  margin-top: 0;
+.services-header {
+  font-family: "Mplus1p-Regular";
+  font-weight: 200;
+  font-size: 36px;
+  line-height: 53px;
+  margin: 0;
 }
 
-.catalog-list__item.inner-page:nth-child(3) {
-  margin-right: 0;
+.wrapper {
+  margin-bottom: 40px;
 }
 
-.catalog-list__item.inner-page:nth-child(6) {
-  margin-right: 0;
+.service-advantages {
+  padding-top: 46px;
+  padding-bottom: 50px;
 }
 
-.catalog-request.button-request {
-  margin-bottom: 0;
+.advantages-list {
+  padding-left: 130px;
+}
+
+.advantages-list--item {
+  position: relative;
+}
+
+.advantages-list--item::before {
+  position: absolute;
+  content: "";
+  background-color: #FF5E7F;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  left: -3%;
+}
+
+.services-you-get {
+  margin-bottom: 70px;
+}
+
+.consultation {
+  margin-bottom: 75px;
+}
+
+.services-price {
+  display: flex;
+  margin-bottom: 92px;
+
+}
+
+.services-price .services-header {
+  margin-right: 44px;
+}
+
+.services-price span {
+
+  padding-top: 1.5%;
+  margin-right: 33px;
+}
+
+.price-no-discount {
+  font-size: 36px;
+  text-decoration: line-through;
+  font-family: "Mplus1p-Regular";
+  opacity: 0.8;
+}
+
+.price-discount {
+  color: #fff;
+  font-size: 45px;
+  background-color: #FF5E7F;
+  font-family: "Mplus1p-Black";
+  padding: 10px 20px 15px 20px;
+}
+
+.services-price .button-request {
+  margin-left: 12%;
 }
 
 .contact-container {
@@ -1015,19 +1095,19 @@ input[type="radio"].visually-hidden {
 .contact-form.inner-page {
   position: static;
   margin-bottom: 5%;
-  width: 50%;
+  width: 80%;
   margin-right: 0;
   padding-top: 2%;
 }
 
-.contact-information {
-  width: 50%;
-}
-
 .contact-information h4 {
-  font-family: "Montserrat-Bold";
+  font-family: "Roboto-Regular";
   font-weight: 700;
   margin-bottom: 0;
+}
+
+.contact-information a {
+  color: #000000;
 }
 
 .contact-information p {
@@ -1351,6 +1431,14 @@ input[type="radio"].visually-hidden {
     margin-right: 0;
     text-align: right;
   }
+
+  .contact-information {
+    width: 50%;
+  }
+
+  .contact-form.inner-page {
+    margin-left: 4 %;
+  }
 }
 
 .footer-other--list {
@@ -1530,6 +1618,12 @@ input[type="radio"].visually-hidden {
     left: 0;
   }
 
+  .contact-form-info {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
   .catalog-page-description {
     margin-bottom: 15%;
   }
@@ -1541,7 +1635,7 @@ input[type="radio"].visually-hidden {
   .contact-form.inner-page {
     width: 100%;
     justify-content: center;
-    margin-right: 0;
+    margin: 0 auto;
   }
 
   .contact-information {
@@ -1549,12 +1643,6 @@ input[type="radio"].visually-hidden {
     text-align: center;
     margin-bottom: 5%;
     font-size: 20px;
-  }
-
-  .contact-information h4 {
-    font-family: "Montserrat-Bold";
-    font-weight: 700;
-    margin-bottom: 0;
   }
 
   .contact-information p {
