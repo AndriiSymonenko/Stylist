@@ -589,12 +589,13 @@ input[type="radio"].visually-hidden {
   display: flex;
   padding-left: 0;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .blog-list--item {
   position: relative;
   background-color: #e1cfb2;
-  margin-right: 86px;
+
   width: 453px;
 }
 
@@ -1039,6 +1040,7 @@ input[type="radio"].visually-hidden {
 .services-price {
   display: flex;
   margin-bottom: 92px;
+  justify-content: space-between;
 }
 
 .services-price .services-header {
@@ -1098,6 +1100,58 @@ input[type="radio"].visually-hidden {
 
 .footer-navigation__list.inner-page {
   justify-content: space-between;
+}
+
+.blog-page {
+  margin-bottom: 5%;
+}
+
+.blog-list.inner-page {
+  justify-content: space-around;
+}
+
+.blog-list--item {
+  margin-bottom: 5%;
+}
+
+.pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 6%;
+  margin: 0;
+  list-style: none;
+}
+
+.pagination-item a {
+  display: block;
+  padding: 10px 19px;
+  margin-right: 5px;
+  color: #ffffff;
+
+  background-color: #FF5E7F;
+}
+
+.pagination-item a:hover,
+.pagination-item a:focus,
+.pagination-item a:active {
+  background-color: #DB4549;
+}
+
+.pagination-item:last-child {
+  margin-right: 0;
+}
+
+.pagination-item-current a {
+  color: #FF5E7F;
+  background-color: #ffffff;
+}
+
+.pagination-item-current a:hover,
+.pagination-item-current a:focus,
+.pagination-item-current a:active {
+  color: #DB4549;
+
+  background-color: #ffffff;
 }
 
 /* adaptive */
@@ -1281,7 +1335,6 @@ input[type="radio"].visually-hidden {
   }
 
   /* inner-page-services */
-
   .services section {
     flex-wrap: wrap;
   }
@@ -1314,8 +1367,9 @@ input[type="radio"].visually-hidden {
     font-size: 22px;
   }
 
-  .services-price {
+  .services .services-price {
     text-align: center;
+    flex-wrap: nowrap;
   }
 
   .price-header {
@@ -1326,6 +1380,8 @@ input[type="radio"].visually-hidden {
     width: 25%;
     margin-right: 0;
   }
+
+  .price-discount {}
 
   .services-price .button-request {
     margin-left: 7%;
@@ -1488,6 +1544,7 @@ input[type="radio"].visually-hidden {
   .contact-form.inner-page {
     margin-left: 4%;
   }
+
   .footer-other--list {
     font-size: 16px;
   }
@@ -1497,6 +1554,7 @@ input[type="radio"].visually-hidden {
   .services-text {
     text-align: center;
   }
+
   .description-services {
     text-align: center;
   }
@@ -1515,8 +1573,9 @@ input[type="radio"].visually-hidden {
     padding-left: 8%;
   }
 
-  .services-price {
+  .services .services-price {
     width: 98%;
+    flex-wrap: wrap;
   }
 
   .services-price span {
@@ -1740,6 +1799,10 @@ input[type="radio"].visually-hidden {
   }
 
   /* inner-page-services */
+  .services-text {
+    text-align: left;
+  }
+
   .services img {
     width: 100%;
     height: auto;
@@ -1766,8 +1829,14 @@ input[type="radio"].visually-hidden {
 }
 
 @media only screen and (max-width: 375px) {
+
   /* inner-page-services */
+  .advantages-list--item::before {
+    left: -8%;
+    top: 5px;
+  }
 }
+
 @media only screen and (max-width: 320px) {
   .header-description__img-hidden {
     width: 80%;
