@@ -22,16 +22,16 @@ window.addEventListener("DOMContentLoaded", function () {
     buttonClouse = document.querySelector(".modal-close"),
     overFlow = document.querySelector(".black-wrapper");
 
-  buttonOpen.forEach(function (item, idex) {
-    item.addEventListener("click", function (event) {
-      event.preventDefault();
-      modalFormWindow.classList.add("open");
-      document.body.style.overflow = "hidden";
-      overFlow.classList.add("overflow-show");
-    });
-  });
-  buttonClouse.addEventListener("click", function (event) {
-    event.preventDefault();
+  function openModal() {
+    // event.preventDefault();
+    modalFormWindow.classList.add("open");
+    document.body.style.overflow = "hidden";
+    overFlow.classList.add("overflow-show");
+    clearInterval(timeOpen);
+  }
+
+  function closeModal() {
+    // event.preventDefault();
     modalFormWindow.classList.remove("open");
     document.body.style.overflow = "";
     overFlow.classList.remove("overflow-show");
@@ -41,9 +41,31 @@ window.addEventListener("DOMContentLoaded", function () {
     validName.value = "";
     validPhone.value = "";
     validEmail.value = "";
+    clearInterval(timeOpen);
+  }
+
+  buttonOpen.forEach(function (item, idex) {
+    item.addEventListener("click", openModal);
   });
 
+  buttonClouse.addEventListener("click", closeModal);
 
+  //Timer for modal
+  const timeOpen = setInterval(openModal, 15000);
+
+  // End page -> Open Modal
+
+  function showModalByScroll() {
+    if (
+      window.pageYOffset + document.documentElement.clientHeight >=
+      document.documentElement.scrollHeight
+    ) {
+      openModal();
+      window.removeEventListener("scroll", showModalByScroll);
+    }
+  }
+
+  window.addEventListener("scroll", showModalByScroll);
 
   //Validation Form
 
@@ -79,45 +101,37 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  //map form
-  let formMap = document.querySelector(".main-form-map"),
-    validNameMap = document.querySelector("#name-map"),
-    validEmailMap = document.querySelector("#email-map"),
-    validPhoneMap = document.querySelector("#phone-map");
+  //Slider
+  let slide = document.querySelectorAll(".blog-list--item"),
+    next = document.querySelector(".next"),
+    prev = document.querySelector(".prev");
+  let indexSlide = 1;
 
-  //Validation Form
+  function showSlide(n) {
+    if (n > slide.length) {
+      indexSlide = 1;
+    }
+    if (n < 1) {
+      indexSlide = slide.length - 1;
+    }
+    slide.forEach((item) => {
+      item.classList.remove("active-slide");
+    });
 
-  function validationEmailMap() {
-    let validReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    return validReg.test(validEmailMap.value);
+    slide[indexSlide - 1].classList.add("active-slide");
+    slide[indexSlide].classList.add("active-slide");
+    console.log(indexSlide);
   }
 
-  formMap.addEventListener("submit", function (event) {
-    if (validNameMap.value === "" || validNameMap.value === null) {
-      validNameMap.classList.add("invalid-field");
-      console.log(validNameMap.value);
-      event.preventDefault();
-    } else {
-      validName.classList.remove("invalid-field");
-      console.log(validNameMap.value);
-    }
-    if (
-      validEmailMap.value === "" ||
-      validEmailMap.value === null ||
-      validationEmailMap() != true
-    ) {
-      validEmailMap.classList.add("invalid-field");
-      event.preventDefault();
-    } else {
-      validEmailMap.classList.remove("invalid-field");
-    }
-    if (validPhoneMap.value === "" || validPhone.value === null) {
-      validPhoneMap.classList.add("invalid-field");
-      event.preventDefault();
-    } else {
-      validPhoneMap.classList.remove("invalid-field");
-    }
+  function plusSlide(n) {
+    showSlide((indexSlide += n));
+  }
+
+  prev.addEventListener("click", () => {
+    plusSlide(-2);
   });
 
-
+  next.addEventListener("click", () => {
+    plusSlide(2);
+  });
 });

@@ -592,10 +592,14 @@ input[type="radio"].visually-hidden {
   flex-wrap: wrap;
 }
 
+.blog-list--item.active-slide {
+  display: block;
+}
+
 .blog-list--item {
   position: relative;
   background-color: #e1cfb2;
-
+  display: none;
   width: 453px;
 }
 
@@ -1128,13 +1132,13 @@ input[type="radio"].visually-hidden {
   margin-right: 5px;
   color: #ffffff;
 
-  background-color: #FF5E7F;
+  background-color: #ff5e7f;
 }
 
 .pagination-item a:hover,
 .pagination-item a:focus,
 .pagination-item a:active {
-  background-color: #DB4549;
+  background-color: #db4549;
 }
 
 .pagination-item:last-child {
@@ -1142,14 +1146,14 @@ input[type="radio"].visually-hidden {
 }
 
 .pagination-item-current a {
-  color: #FF5E7F;
+  color: #ff5e7f;
   background-color: #ffffff;
 }
 
 .pagination-item-current a:hover,
 .pagination-item-current a:focus,
 .pagination-item-current a:active {
-  color: #DB4549;
+  color: #db4549;
 
   background-color: #ffffff;
 }
@@ -1381,7 +1385,8 @@ input[type="radio"].visually-hidden {
     margin-right: 0;
   }
 
-  .price-discount {}
+  .price-discount {
+  }
 
   .services-price .button-request {
     margin-left: 7%;
@@ -1829,7 +1834,6 @@ input[type="radio"].visually-hidden {
 }
 
 @media only screen and (max-width: 375px) {
-
   /* inner-page-services */
   .advantages-list--item::before {
     left: -8%;
