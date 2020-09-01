@@ -12,10 +12,17 @@ window.addEventListener("DOMContentLoaded", function () {
     toggleMenu.classList.remove("toggle-open");
   });
   //popup form
-  let form = document.querySelector(".main-form"),
-    validName = document.querySelector("#name"),
-    validEmail = document.querySelector("#email"),
-    validPhone = document.querySelector("#phone");
+  let formEnd = document.querySelector(".main-form"),
+    formInput = formEnd.querySelectorAll("input");
+
+
+  function clearInput(selector, classDelete) {
+    selector.forEach((item) => {
+      item.classList.remove(classDelete);
+      item.style.border = "";
+    });
+  }
+
 
   let modalFormWindow = document.querySelector(".popup"),
     buttonOpen = document.querySelectorAll(".button-request"),
@@ -23,7 +30,6 @@ window.addEventListener("DOMContentLoaded", function () {
     overFlow = document.querySelector(".black-wrapper");
 
   function openModal() {
-    // event.preventDefault();
     modalFormWindow.classList.add("open");
     document.body.style.overflow = "hidden";
     overFlow.classList.add("overflow-show");
@@ -31,17 +37,14 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function closeModal() {
-    // event.preventDefault();
     modalFormWindow.classList.remove("open");
     document.body.style.overflow = "";
     overFlow.classList.remove("overflow-show");
-    validName.classList.remove("invalid-field");
-    validPhone.classList.remove("invalid-field");
-    validEmail.classList.remove("invalid-field");
-    validName.value = "";
-    validPhone.value = "";
-    validEmail.value = "";
-    clearInterval(timeOpen);
+    clearInput(formInput, "invalid-field");
+    formEnd.reset();
+    btnEvent.forEach(item => {
+      item.disabled = true;
+    });
   }
 
   buttonOpen.forEach(function (item, idex) {
@@ -69,37 +72,65 @@ window.addEventListener("DOMContentLoaded", function () {
 
   //Validation Form
 
-  function validationEmail() {
-    let validReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    return validReg.test(validEmail.value);
+  let btnEvent = document.querySelectorAll(".validate-button");
+  btnEvent.forEach(item => {
+    item.disabled = true;
+  })
+
+
+  const regExpName = /\w/i;
+  const regExpPhone = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+  const regExpEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+
+
+  function inputValidate(inputSelector, classElement, regExp) {
+    let input = document.querySelector(`#${inputSelector}`)
+    input.addEventListener("input", () => {
+      if (!input.value || !regExp.test(input.value)) {
+        btnEvent.forEach(item => {
+          item.disabled = true;
+        });
+        input.classList.add(classElement);
+        input.style.border = "";
+      } else {
+        input.classList.remove(classElement);
+        input.style.border = "2px solid #80bd57";
+        btnEvent.forEach(item => {
+          item.disabled = false;
+        });
+        submitForm("main-form", "name", "email", "phone");
+      }
+
+    });
+
   }
 
-  form.addEventListener("submit", function (event) {
-    if (validName.value === "" || validName.value === null) {
-      validName.classList.add("invalid-field");
-      console.log(validName.value);
-      event.preventDefault();
-    } else {
-      validName.classList.remove("invalid-field");
-      console.log(validName.value);
-    }
-    if (
-      validEmail.value === "" ||
-      validEmail.value === null ||
-      validationEmail() != true
-    ) {
-      validEmail.classList.add("invalid-field");
-      event.preventDefault();
-    } else {
-      validEmail.classList.remove("invalid-field");
-    }
-    if (validPhone.value === "" || validPhone.value === null) {
-      validPhone.classList.add("invalid-field");
-      event.preventDefault();
-    } else {
-      validPhone.classList.remove("invalid-field");
-    }
-  });
+
+  inputValidate('name', "invalid-field", regExpName);
+  inputValidate('phone', "invalid-field", regExpPhone);
+  inputValidate('email', "invalid-field", regExpEmail);
+
+
+
+  function submitForm(formSelector, nameSelector, emailSelector, phoneSelector) {
+    form = document.querySelector(`.${formSelector}`);
+    Name = document.querySelector(`#${nameSelector}`);
+    Email = document.querySelector(`#${emailSelector}`);
+    Phone = document.querySelector(`#${phoneSelector}`);
+    form.addEventListener("click", function (event) {
+      if (Name.value === "" || Name.value === null) {
+        event.preventDefault();
+      }
+      if (Email.value === "" || Email.value === null) {
+        event.preventDefault();
+      }
+      if (Phone.value === "" || Phone.value === null) {
+        event.preventDefault();
+      }
+    });
+  }
 
   //Slider
   let slide = document.querySelectorAll(".blog-list--item"),
